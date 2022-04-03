@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth.models import User
+from taggit.managers import TaggableManager
 # Create your models here.
 
 
@@ -25,6 +26,7 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)  # auto_now_add автоматичски добавляет дату при создании объекта
     updated = models.DateTimeField(auto_now=True)      # auto_now дата будет сохранятся автоматически при сохранении обьекта
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')  #
+    tags = TaggableManager()
 
     class Meta:
         ordering = ('-publish',)
